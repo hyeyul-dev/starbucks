@@ -7,7 +7,7 @@ class Beverage(models.Model):
 	category		= models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
 	sub_category	= models.ForeignKey('SubCategory', on_delete = models.SET_NULL, null=True)
 	nutrition		= models.ForeignKey('Nutrition', on_delete = models.SET_NULL, null = True)
-	allergy			= models.ManyToManyField('Allegy', through = 'BeverageAllery')
+	allergy			= models.ManyToManyField('Allergy', through = 'BeverageAllergy')
 	size			= models.ManyToManyField('Size', through = 'BeverageSize')
 
 
@@ -33,10 +33,10 @@ class SubCategory(models.Model):
 class Nutrition(models.Model):
 	kcal_g			= models.DecimalField(max_digits=4, decimal_places=1)
 	natrium_mg		= models.DecimalField(max_digits=4, decimal_places =1)
-	saturated_fat_g = models.DecimalField(max_digits =4, decimal_places=1)
-	sugars_g		= models.DecimalField(max_digits=4, decimals_places =1)
-	protein_g       = models.DecimalField(max_digits=5, decimal_places=1)
-    caffein_mg      = models.DecimalField(max_digits=5, decimal_places=1)
+	saturated_fat_g = models.DecimalField(max_digits =4,decimal_places=1)
+	sugars_g		= models.DecimalField(max_digits=4, decimal_places =1)
+	protein_g       = models.DecimalField(max_digits=4, decimal_places=1)
+	caffein_mg      = models.DecimalField(max_digits=4, decimal_places=1)
 
 	class Meta:
 		db_table = 'nutritions'
@@ -76,4 +76,8 @@ class BeverageAllergy(models.Model):
 	class Meta:
 		db_table	= 'beverages_allergies'
 
+class Description(models.Model):
+	content			= models.CharField(max_length = 2000)
 
+	class Meta:
+		db_table = 'dscriptions'
